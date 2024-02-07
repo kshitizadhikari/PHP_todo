@@ -22,6 +22,7 @@
                         <th>ID</th>
                         <th>Todo</th>
                         <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,11 +40,12 @@
                                     <td><?php echo $row['id'] ?></td>
                                     <td><?php echo $row['todo'] ?></td>
                                     <td><?php echo $row['status'] ?></td>
+                                    <td><a href="update.php?id=<?php echo $row['id']?>">Edit</a></td>
                                 </tr>
                     <?php
                             }
                         }
-                   ?>
+                    ?>
                 </tbody>
             </table>
         </div>

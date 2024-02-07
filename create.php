@@ -8,7 +8,7 @@
     <form action="create.php" method="POST">
         <div>
             <label>Enter Todo</label>
-            <input type="text" name="todo"> 
+            <input type="text" name="todo" required> 
         </div>
         <div>
             <button type="submit" name="createTodoBtn">Create Todo</button>
@@ -29,6 +29,7 @@
 
         echo "Todo created successfully";
         header("Location: index.php");
+        exit();
     }
 
 ?>
