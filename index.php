@@ -40,7 +40,10 @@
                                     <td><?php echo $row['id'] ?></td>
                                     <td><?php echo $row['todo'] ?></td>
                                     <td><?php echo $row['status'] ?></td>
-                                    <td><a href="update.php?id=<?php echo $row['id']?>">Edit</a></td>
+                                    <td>
+                                        <a href="update.php?id=<?php echo $row['id']?>">Update</a> |
+                                        <a href="delete.php?id=<?php echo $row['id']?>">Delete</a>
+                                    </td>
                                 </tr>
                     <?php
                             }

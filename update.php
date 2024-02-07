@@ -17,11 +17,10 @@
     <form action="update.php?id=<?php echo $id;?>" method="POST">
         <input type="hidden" value="<?php echo $id?>" name="id">
         <div>
-            <label>Enter New Todo</label>
-            <input type="text" name="updatedTodo" value="<?php echo $row['todo'] ?>" required> 
+            <label>Todo: <?php echo $row['todo'] ?></label>
         </div>
         <div>
-            <label>Select New Status</label>
+            <label>Select Status</label>
             <select name="status">
                 <option value="0">Pending</option>
                 <option value="1">Completed</option>
@@ -36,9 +35,8 @@
 
 <?php
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['updateTodoBtn'])) {
-        $todo = $_POST['updatedTodo'];
         $status = $_POST['status'];
-        $sql = "UPDATE todo SET `todo`='$todo', `status`='$status' WHERE `id`='$id'";
+        $sql = "UPDATE todo SET `status`='$status' WHERE `id`='$id'";
         $result = $conn->query($sql);
         if(!$result)
         {
