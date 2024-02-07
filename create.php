@@ -20,16 +20,21 @@
 <?php
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['createTodoBtn'])) {
         $todo = $_POST['todo'];
-        $sql = "INSERT INTO todo (todo) VALUES('$todo')";
-        $result = $conn->query($sql);
-        if(!$result)
+
+        $sql_insert = "INSERT INTO todo (todo) VALUES(?)";
+        $stmt_insert = $conn->prepare($sql_insert);
+        $stmt_insert->bind_param("s", $todo);
+        $stmt_insert->execute();
+        
+        if($stmt_insert->affected_rows > 0)
         {
+            echo "Todo created successfully";
+            header("Location: index.php");
+            exit();
+        } else {
             echo "Error" . $conn->error;
         }
 
-        echo "Todo created successfully";
-        header("Location: index.php");
-        exit();
     }
 
 ?>

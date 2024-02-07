@@ -12,6 +12,6 @@
         die("Connection failed.");
     } 
 
-    echo "connection successful";
+    echo "connection successful\n";
 
 ?>

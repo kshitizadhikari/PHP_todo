@@ -36,15 +36,20 @@
 <?php
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['updateTodoBtn'])) {
         $status = $_POST['status'];
-        $sql = "UPDATE todo SET `status`='$status' WHERE `id`='$id'";
-        $result = $conn->query($sql);
-        if(!$result)
-        {
-            echo "Error" . $conn->error;
-        } else {
+
+        $sql_update = "UPDATE todo SET `status`=? WHERE `id`=?";
+        $stmt_update = $conn->prepare($sql_update);
+        
+        $stmt_update->bind_param("ii", $status, $id);
+
+        $stmt_update->execute();
+
+        if($stmt_update->affected_rows > 0) {
             echo "Todo updated successfully";
             header("Location: index.php");
-            exit(); 
+            exit();
+        } else {
+            echo "Error updating todo: " . $conn->error;
         }
     }
 ?>
